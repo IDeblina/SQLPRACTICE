@@ -1,0 +1,23 @@
+5.1 select Name from Pieces;
+
+5.2 select * from providers;
+
+5.3 select piece, avg(price) from Provides group by piece;
+
+5.4 select Name from Providers where Code in (select  Provider from provides where Piece = 1 );   ***************
+/ select Providers.Name from Providers join Provides on Providers.Code = Provides.Provider where Provides.Piece = 1;
+/SELECT Providers.Name FROM Providers INNER JOIN Provides ON Providers.Code = Provides.Provider AND Provides.Piece = 1;
+
+5.5 select Name from Pieces where Code in (select Piece from Provides where Provider = 'HAL');
+/ select Pieces.Name from Pieces join Provides on (Pieces.code = Provides.Piece) where Provides.Provider = 'HAL';
+/ SELECT Name FROM Pieces WHERE EXISTS ( SELECT * FROM Provides WHERE Provider = 'HAL' AND Piece = Pieces.Code );
+
+5.6 SELECT Pieces.Name, Providers.Name, Price FROM Pieces INNER JOIN Provides ON Pieces.Code = Piece INNER JOIN Providers ON Providers.Code = Provider WHERE Price =(SELECT MAX(Price) FROM Provides WHERE Piece = Pieces.Code);
+
+5.7 INSERT INTO Provides(Piece, Provider, Price) VALUES (1, 'TNBC', 7);
+
+5.8 UPDATE Provides SET Price = Price + 1;
+
+5.9 DELETE FROM Provides WHERE provider = 'RBT' AND Piece = 4;
+
+5.10 DELETE FROM provides WHERE Provider = 'RBT'; 

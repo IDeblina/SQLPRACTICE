@@ -1,0 +1,24 @@
+CREATE TABLE `terminator`.`customer` (
+  `cust_id` INT NOT NULL,
+  `cust_name` VARCHAR(45) NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `occupation` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`cust_id`));
+
+
+INSERT INTO `terminator`.`customer` (`cust_id`, `cust_name`, `city`, `occupation`) VALUES ('1', 'Peter', 'London', 'Business');
+INSERT INTO `terminator`.`customer` (`cust_id`, `cust_name`, `city`, `occupation`) VALUES ('2', 'Joshep', 'Texas', 'Doctor');
+INSERT INTO `terminator`.`customer` (`cust_id`, `cust_name`, `city`, `occupation`) VALUES ('3', 'Mark', 'New Delhi', 'Engineer');
+INSERT INTO `terminator`.`customer` (`cust_id`, `cust_name`, `city`, `occupation`) VALUES ('4', 'Michael', 'Newyork', 'Scientist');
+
+
+CREATE TABLE `terminator`.`orders` (
+  `order_id` INT NOT NULL,
+  `prod_name` VARCHAR(45) NOT NULL,
+  `price` INT NOT NULL,
+  PRIMARY KEY (`order_id`));
+
+INSERT INTO `terminator`.`orders` (`order_id`, `prod_name`, `price`) VALUES ('1', 'Laptop', '80000');
+INSERT INTO `terminator`.`orders` (`order_id`, `prod_name`, `price`) VALUES ('2', 'Mouce', '3000');
+INSERT INTO `terminator`.`orders` (`order_id`, `prod_name`, `price`) VALUES ('3', 'Desktop', '50000');
+INSERT INTO `terminator`.`orders` (`order_id`, `prod_name`, `price`) VALUES ('4', 'Iphone', '50000');

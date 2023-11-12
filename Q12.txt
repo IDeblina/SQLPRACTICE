@@ -1,0 +1,71 @@
+mysql> create table STORE(ITEMNO int,ITEM char(50),SCODE int,QTY int,RATE int,LASTBUY char(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into SALGRADE values(2005,'SHARPENER CLASSI^C24000,8000);
+mysql> insert into STORE values(2005,'SHARPENER CLASSIC',23,60,8,'31-JUN-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into STORE values(2003,'BALLS',22,50,25,'01-FEB-10');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into STORE values(2002,'GEL PEN PREMIUM',21,150,12,'24-FEB-10');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into STORE values(2006,'GEL PEN CLASSIC',21,250,20,'11-MAR-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into STORE values(2001,'ERASER SMALL',22,220,6,'19-JAN-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into STORE values(2004,'ERASER BIG',22,110,8,'02-DEC-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into STORE values(2004,'ERASER BIG',22,110,8,'02-DEC-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into STORE values(2009,'BALL PEN 0.5',21,180,18,'02-NOV-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT *FROM STORE;
++--------+-------------------+-------+------+------+-----------+
+| ITEMNO | ITEM              | SCODE | QTY  | RATE | LASTBUY   |
++--------+-------------------+-------+------+------+-----------+
+|   2005 | SHARPENER CLASSIC |    23 |   60 |    8 | 31-JUN-09 |
+|   2003 | BALLS             |    22 |   50 |   25 | 01-FEB-10 |
+|   2002 | GEL PEN PREMIUM   |    21 |  150 |   12 | 24-FEB-10 |
+|   2006 | GEL PEN CLASSIC   |    21 |  250 |   20 | 11-MAR-09 |
+|   2001 | ERASER SMALL      |    22 |  220 |    6 | 19-JAN-09 |
+|   2004 | ERASER BIG        |    22 |  110 |    8 | 02-DEC-09 |
+|   2004 | ERASER BIG        |    22 |  110 |    8 | 02-DEC-09 |
+|   2009 | BALL PEN 0.5      |    21 |  180 |   18 | 02-NOV-09 |
++--------+-------------------+-------+------+------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> create table SUPPLIERS(SCODES int,SNAME char(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into SUPPLIERS values(21,'PREMIUM STATIONERS');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into SUPPLIERS values(23,'SOFT PLASTICS');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into SUPPLIERS values(22,'TERA SUPPLY');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *FROM SUPPLIERS;
++--------+--------------------+
+| SCODES | SNAME              |
++--------+--------------------+
+|     21 | PREMIUM STATIONERS |
+|     23 | SOFT PLASTICS      |
+|     22 | TERA SUPPLY        |
++--------+--------------------+
+3 rows in set (0.00 sec)
+
+
+
+a) I) SELECT *FROM STORE ORDER BY LASTBUY;
+II) SELECT ITEMNO, ITEM FROM STORE WHERE RATE>15;
+III) SELECT * FROM STORE WHERE SCODE=22 OR QTY>110;
+IV) SELECT MIN(RATE) FROM STORE GROUP BY SCODE;

@@ -1,0 +1,138 @@
+mysql> use dipanjan
+Database changed
+mysql> create table CARDEN(CCODE int,CARNAME char(50),MAKE char(50),COLOR char(50),CAPACITY int,CHARGES int);
+
+
+ insert into CARDEN values(501,'A-STAR','SUZUKI','RED',3,14);
+
+insert into CARDEN values(503,'INDIGO','TATA','SILVER',3,12);
+
+ insert into CARDEN values(502,'INNOVA','TOYOTA','WHITE',7,15);
+
+insert into CARDEN values(509,'SX4','SUZUKI','SILVER',4,14);
+
+ insert into CARDEN values(510,'C-CLASS','MERCEDES','RED',4,35);
+
+mysql> select *from CARDEN;
++-------+---------+----------+--------+----------+---------+
+| CCODE | CARNAME | MAKE     | COLOR  | CAPACITY | CHARGES |
++-------+---------+----------+--------+----------+---------+
+|   501 | A-STAR  | SUZUKI   | RED    |        3 |      14 |
+|   503 | INDIGO  | TATA     | SILVER |        3 |      12 |
+|   502 | INNOVA  | TOYOTA   | WHITE  |        7 |      15 |
+|   509 | SX4     | SUZUKI   | SILVER |        4 |      14 |
+|   510 | C-CLASS | MERCEDES | RED    |        4 |      35 |
++-------+---------+----------+--------+----------+---------+
+
+
+
+ create table CUSTOMER1(CODE char(50),CNAME char(50),CCODE char(50));
+
+
+ insert into CUSTOMER1 values(1001,'HAMANT SAHU',501);
+ insert into CUSTOMER1 values(1002,'RAJ LAL',509);
+insert into CUSTOMER1 values(1003,'FEROZA SHAH',503);
+insert into CUSTOMER1 values(1004,'KHETAN DHAL',502);
+
+
+select *from CUSTOMER1;
++------+-------------+-------+
+| CODE | CNAME       | CCODE |
++------+-------------+-------+
+| 1001 | HAMANT SAHU | 501   |
+| 1002 | RAJ LAL     | 509   |
+| 1003 | FEROZA SHAH | 503   |
+| 1004 | KHETAN DHAL | 502   |
++------+-------------+-------+
+4 rows in set (0.00 sec)
+
+
+a. i) select carname from carden where color='silver';
++---------+
+| carname |
++---------+
+| INDIGO  |
+| SX4     |
++---------+
+2 rows in set (0.06 sec)
+
+ii)  select carname, make , capacity from carden order by capacity desc;
++---------+----------+----------+
+| carname | make     | capacity |
++---------+----------+----------+
+| INNOVA  | TOYOTA   |        7 |
+| SX4     | SUZUKI   |        4 |
+| C-CLASS | MERCEDES |        4 |
+| A-STAR  | SUZUKI   |        3 |
+| INDIGO  | TATA     |        3 |
++---------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select max(charges) from carden;
++--------------+
+| max(charges) |
++--------------+
+|           35 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> select carname, make, max(charges) from carden where charges=(select max(charges) from carden);
++---------+----------+--------------+
+| carname | make     | max(charges) |
++---------+----------+--------------+
+| C-CLASS | MERCEDES |           35 |
++---------+----------+--------------+
+1 row in set (0.01 sec)
+mysql> select *from customer1;
++------+-------------+-------+
+| CODE | CNAME       | CCODE |
++------+-------------+-------+
+| 1001 | HAMANT SAHU | 501   |
+| 1002 | RAJ LAL     | 509   |
+| 1003 | FEROZA SHAH | 503   |
+| 1004 | KHETAN DHAL | 502   |
++------+-------------+-------+
+4 rows in set (0.05 sec)
+
+mysql> select customer1.cname, carden.carname from carden, customer1 where carden.ccode=customer1.ccode;
++-------------+---------+
+| cname       | carname |
++-------------+---------+
+| HAMANT SAHU | A-STAR  |
+| FEROZA SHAH | INDIGO  |
+| KHETAN DHAL | INNOVA  |
+| RAJ LAL     | SX4     |
++-------------+---------+
+4 rows in set (0.01 sec)
+mysql> SELECT COUNT(DISTINCT MAKE) FROM CARDEN;
++----------------------+
+| COUNT(DISTINCT MAKE) |
++----------------------+
+|                    4 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(DISTINCT MAKE) FROM CARDEN;
++----------------------+
+| COUNT(DISTINCT MAKE) |
++----------------------+
+|                    4 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(*) MAKE FROM CARDEN;
++------+
+| MAKE |
++------+
+|    5 |
++------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT CARNAME FROM CARDEN WHERE CAPACITY=4;
++---------+
+| CARNAME |
++---------+
+| SX4     |
+| C-CLASS |
++---------+
+2 rows in set (0.00 sec)

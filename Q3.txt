@@ -1,0 +1,162 @@
+create table ACCESSORIES(NO char(50),NAME char(50),PRICE int,ID char(50));
+
+insert into ACCESSORIES values('A01','MotherBoard',12000,'S01');
+insert into ACCESSORIES values('A02','Hard Disk',5000,'S01');
+insert into ACCESSORIES values('A03','Keyboard',500,'S02');
+insert into ACCESSORIES values('A04','mouse',300,'S01');
+insert into ACCESSORIES values('A05','Mother Board',13000,'S02');
+insert into ACCESSORIES values('A06','Keyboard',400,'S03');
+insert into ACCESSORIES values('A07','LCD',6000,'S04');
+insert into ACCESSORIES values('A08','LCD',5500,'S05');
+insert into ACCESSORIES values('A09','Mouse',350,'S05');
+insert into ACCESSORIES values('A10','Hard Disk',4500,'S03');
+
+create table SHOPPE(ID char(50),SNAME char(50),AREA char(50));
+
+insert into SHOPPE values('S01','ABC COMPUTERONICS','CP')
+insert into SHOPPE values('S02','ALL INFOTECH MEDIA','GK II')
+insert into SHOPPE values('S03','TECH SHOPPE','CP')
+insert into SHOPPE values('S04','GEEKS TECNO SOFT','Nehru Place')
+insert into SHOPPE values('S05','HITECH TECH STORE','Nehru Place')
+
+
+mysql> select * from ACCESSORIES;
++------+--------------+-------+------+
+| NO   | NAME         | PRICE | ID   |
++------+--------------+-------+------+
+| A01  | MotherBoard  | 12000 | S01  |
+| A02  | Hard Disk    |  5000 | S01  |
+| A03  | Keyboard     |   500 | S02  |
+| A04  | mouse        |   300 | S01  |
+| A05  | Mother Board | 13000 | S02  |
+| A06  | Keyboard     |   400 | S03  |
+| A07  | LCD          |  6000 | S04  |
+| A08  | LCD          |  5500 | S05  |
+| A09  | Mouse        |   350 | S05  |
+| A10  | Hard Disk    |  4500 | S03  |
++------+--------------+-------+------+
+10 rows in set (0.00 sec)
+
+a)
+i)  SELECT NAME,PRICE FROM ACCESSORIES ORDER BY PRICE;
++--------------+-------+
+| NAME         | PRICE |
++--------------+-------+
+| mouse        |   300 |
+| Mouse        |   350 |
+| Keyboard     |   400 |
+| Keyboard     |   500 |
+| Hard Disk    |  4500 |
+| Hard Disk    |  5000 |
+| LCD          |  5500 |
+| LCD          |  6000 |
+| MotherBoard  | 12000 |
+| Mother Board | 13000 |
++--------------+-------+
+10 rows in set (0.05 sec)
+
+ii) SELECT ID,SNAME FROM SHOPPE WHERE AREA='NEHRU PLACE';
++------+--------------------+
+| ID   | SNAME              |
++------+--------------------+
+| SO4  | GREEKS TECHNO SOFT |
+| SO5  | HITECH TECH STORE  |
++------+--------------------+
+2 rows in set (0.01 sec)
+
+iii) SELECT MIN(PRICE) "MININUM PRICE", MAX(PRICE) "MAXIMUM PRICE", NAME FROM ACCESSORIES GROUP BY NAME;
++---------------+---------------+--------------+
+| MININUM PRICE | MAXIMUM PRICE | NAME         |
++---------------+---------------+--------------+
+|         12000 |         12000 | MotherBoard  |
+|          4500 |          5000 | Hard Disk    |
+|           400 |           500 | Keyboard     |
+|           300 |           350 | mouse        |
+|         13000 |         13000 | Mother Board |
+|          5500 |          6000 | LCD          |
++---------------+---------------+--------------+
+6 rows in set (0.01 sec)
+
+iV) SELECT NAME,PRICE,SNAME FROM ACCESSORIES A, SHOPPE S WHERE A.ID=S.ID;
++--------------+-------+--------------------+
+| NAME         | PRICE | SNAME              |
++--------------+-------+--------------------+
+| MotherBoard  | 12000 | ABC COMPUTERONICS  |
+| Hard Disk    |  5000 | ABC COMPUTERONICS  |
+| Keyboard     |   500 | ALL INFOTECH MEDIA |
+| mouse        |   300 | ABC COMPUTERONICS  |
+| Mother Board | 13000 | ALL INFOTECH MEDIA |
++--------------+-------+--------------------+
+5 rows in set (0.01 sec)
+
+mysql>
+mysql> SELECT DISTINCT NAME FROM ACCESSORIES WHERE PRICE>=5000;
++--------------+
+| NAME         |
++--------------+
+| MotherBoard  |
+| Hard Disk    |
+| Mother Board |
+| LCD          |
++--------------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT DISTINCT NAME FROM ACCESSORIES;
++--------------+
+| NAME         |
++--------------+
+| MotherBoard  |
+| Hard Disk    |
+| Keyboard     |
+| mouse        |
+| Mother Board |
+| LCD          |
++--------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT AREA, COUNT (*) FROM SHOPPE GROUP BY AREA;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) FROM SHOPPE GROUP BY AREA' at line 1
+mysql> select *from shoppe;
++------+--------------------+-------------+
+| ID   | SNAME              | AREA        |
++------+--------------------+-------------+
+| S01  | ABC COMPUTERONICS  | CP          |
+| S02  | ALL INFOTECH MEDIA | GK II       |
+| SO3  | TECH SHOPPE        | CP          |
+| SO4  | GREEKS TECHNO SOFT | Nehru Place |
+| SO5  | HITECH TECH STORE  | Nehru Place |
++------+--------------------+-------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT AREA, COUNT(*) FROM SHOPPE GROUP BY AREA;
++-------------+----------+
+| AREA        | COUNT(*) |
++-------------+----------+
+| CP          |        2 |
+| GK II       |        1 |
+| Nehru Place |        2 |
++-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(DISTINCT AREA) FROM SHOPPE;
++----------------------+
+| COUNT(DISTINCT AREA) |
++----------------------+
+|                    3 |
++----------------------+
+1 row in set (0.01 sec)
+
+mysql>  SELECT NAME, PRICE*0.05 DISCOUNT FROM ACCESSORIES WHERE ID IN(‘S02’,
+    -> ‘S03’);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?S02?,
+?S03?)' at line 1
+mysql> SELECT NAME, PRICE*0.05 DISCOUNT FROM ACCESSORIES WHERE ID IN(‘S02’,'SO3');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?S02?,'SO3')' at line 1
+mysql> SELECT NAME, PRICE*0.05 DISCOUNT FROM ACCESSORIES WHERE ID IN('S02','SO3');
++--------------+----------+
+| NAME         | DISCOUNT |
++--------------+----------+
+| Keyboard     |    25.00 |
+| Mother Board |   650.00 |
++--------------+----------+
+2 rows in set (0.00 sec)

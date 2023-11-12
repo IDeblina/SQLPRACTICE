@@ -1,0 +1,212 @@
+
+mysql> create table APPLICANTS(NO int,NAME char(50),FEE int,GENDER char(50),C_ID char(50),JOINYEAR int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into APPLICANTS values(1012,'AMANDEEP',30000,'M','A01',2012);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(1102,'AVISHA',25000,'F','A02',2009);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(1103,'EKANT',30000,'M','A02',2011);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(1049,'ARun',30000,'M','A03',2009);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(1025,'AMBER',40000,'M','A02',2011);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(1106,'ELA',40000,'F','A05',2010);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(1017,'NIKITA',35000,'F','A03',2012);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(1108,'ARLUNA',30000,'F','A03',2012);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(2109,'SHAKTI',35000,'M','A04',2011);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into APPLICANTS values(1101,'KIRAT',25000,'M','A01',2012);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from APPLICANTS;
++------+----------+-------+--------+------+----------+
+| NO   | NAME     | FEE   | GENDER | C_ID | JOINYEAR |
++------+----------+-------+--------+------+----------+
+| 1012 | AMANDEEP | 30000 | M      | A01  |     2012 |
+| 1102 | AVISHA   | 25000 | F      | A02  |     2009 |
+| 1103 | EKANT    | 30000 | M      | A02  |     2011 |
+| 1049 | ARun     | 30000 | M      | A03  |     2009 |
+| 1025 | AMBER    | 40000 | M      | A02  |     2011 |
+| 1106 | ELA      | 40000 | F      | A05  |     2010 |
+| 1017 | NIKITA   | 35000 | F      | A03  |     2012 |
+| 1108 | ARLUNA   | 30000 | F      | A03  |     2012 |
+| 2109 | SHAKTI   | 35000 | M      | A04  |     2011 |
+| 1101 | KIRAT    | 25000 | M      | A01  |     2012 |
++------+----------+-------+--------+------+----------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> create table COURSES(C_ID char(50),COURSE char(50));
+Query OK, 0 rows affected (0.03 sec)
+mysql> insert into COURSES values('A01','FASHION DESIGN');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into COURSES values('A02','NETWORKING');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into COURSES values('A03','HOTEL MANAGEMENT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into COURSES values('A04','EVENT MANAGEMENT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into COURSES values('A05','OFFICE MANAGEMENT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from COURSES;
++------+-------------------+
+| C_ID | COURSE            |
++------+-------------------+
+| A01  | FASHION DESIGN    |
+| A02  | NETWORKING        |
+| A03  | HOTEL MANAGEMENT  |
+| A04  | EVENT MANAGEMENT  |
+| A05  | OFFICE MANAGEMENT |
++------+-------------------+
+5 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_dipanjan |
++--------------------+
+| accessories        |
+| applicants         |
+| courses            |
+| employee           |
+| items              |
+| persons            |
+| shoppe             |
+| t1                 |
+| traders            |
++--------------------+
+9 rows in set (0.00 sec)
+mysql> SELECT NAME, FEE, GENDER, JOINYEAR FROM APPLICANTS WHERE JOINYEAR<2010;
++--------+-------+--------+----------+
+| NAME   | FEE   | GENDER | JOINYEAR |
++--------+-------+--------+----------+
+| AVISHA | 25000 | F      |     2009 |
+| ARun   | 30000 | M      |     2009 |
++--------+-------+--------+----------+
+2 rows in set (0.02 sec)
+
+mysql> SELECT NAME FROM APPLICANTS WHERE FEE>30000;
++--------+
+| NAME   |
++--------+
+| AMBER  |
+| ELA    |
+| NIKITA |
+| SHAKTI |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT NAME FROM APPLICANTS ORDER BY JOINYEAR;
++----------+
+| NAME     |
++----------+
+| AVISHA   |
+| ARun     |
+| ELA      |
+| EKANT    |
+| AMBER    |
+| SHAKTI   |
+| AMANDEEP |
+| NIKITA   |
+| ARLUNA   |
+| KIRAT    |
++----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT JOINYEAR, COUNT(*) FROM APPLICANTS GROUP BY JOINYEAR;
++----------+----------+
+| JOINYEAR | COUNT(*) |
++----------+----------+
+|     2012 |        4 |
+|     2009 |        2 |
+|     2011 |        3 |
+|     2010 |        1 |
++----------+----------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT C_ID,COUNT(*) FROM APPLICANTS GROUP BY C_ID;
++------+----------+
+| C_ID | COUNT(*) |
++------+----------+
+| A01  |        2 |
+| A02  |        3 |
+| A03  |        3 |
+| A05  |        1 |
+| A04  |        1 |
++------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT NAME,COURSE FROM APPLICANTS, COURSES WHERE APPLICANTS.C_ID=COURSES.C_ID;
++----------+-------------------+
+| NAME     | COURSE            |
++----------+-------------------+
+| AMANDEEP | FASHION DESIGN    |
+| AVISHA   | NETWORKING        |
+| EKANT    | NETWORKING        |
+| ARun     | HOTEL MANAGEMENT  |
+| AMBER    | NETWORKING        |
+| ELA      | OFFICE MANAGEMENT |
+| NIKITA   | HOTEL MANAGEMENT  |
+| ARLUNA   | HOTEL MANAGEMENT  |
+| SHAKTI   | EVENT MANAGEMENT  |
+| KIRAT    | FASHION DESIGN    |
++----------+-------------------+
+10 rows in set (0.07 sec)
+
+mysql>
+mysql> SELECT NAME,JOINYEAR FROM APPLICANTS WHERE GENDER='F' AND C_ID='A02';
++--------+----------+
+| NAME   | JOINYEAR |
++--------+----------+
+| AVISHA |     2009 |
++--------+----------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT MIN(JOINYEAR) FROM APPLICANTS WHERE GENDER='M';
++---------------+
+| MIN(JOINYEAR) |
++---------------+
+|          2009 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(FEE) FROM APPLICANTS WHERE C_ID='A01' OR C_ID='A05';
++------------+
+| AVG(FEE)   |
++------------+
+| 31666.6667 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT SUM(FEE), C_ID FROM APPLICANTS GROUP BY C_ID HAVING COUNT(*)=2;
++----------+------+
+| SUM(FEE) | C_ID |
++----------+------+
+|    55000 | A01  |
++----------+------+
+1 row in set (0.01 sec)

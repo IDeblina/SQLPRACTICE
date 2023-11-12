@@ -1,0 +1,60 @@
+mysql> use dipanjan
+Database changed
+mysql> show tables;]\
++--------------------+
+| Tables_in_dipanjan |
++--------------------+
+| accessories        |
+| employee           |
+| persons            |
+| shoppe             |
+| t1                 |
++--------------------+
+5 rows in set (0.01 sec)
+
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ']' at line 1
+mysql> crweate table items(CODE int,INAME char(50),QTY int,PRICE int,COMPANY char(50),TCODE char(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'crweate table items(CODE int,INAME char(50),QTY int,PRICE int,COMPANY char(50),T' at line 1
+mysql> create table items(CODE int,INAME char(50),QTY int,PRICE int,COMPANY char(50),TCODE char(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into items values(1001,'DIGITAL PAD 121',120,11000,'XENTIA','TO1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into items values(1006,'LED SCREEN 40',70,38000,'SANTORA','TO2');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into items values(1004,'CAR GPS SYSTEM',50,2150,'GEOKNOW','TO1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into items values(1003,'DIGITAL CAMERA 12X',160,8000,'DIGILICK','TO2');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into items values(1005,'PEN DRIVE 32 GB',600,1200,'STOREHOME','TO3');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_dipanjan |
++--------------------+
+| accessories        |
+| employee           |
+| items              |
+| persons            |
+| shoppe             |
+| t1                 |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> select *from items;
++------+--------------------+------+-------+-----------+-------+
+| CODE | INAME              | QTY  | PRICE | COMPANY   | TCODE |
++------+--------------------+------+-------+-----------+-------+
+| 1001 | DIGITAL PAD 121    |  120 | 11000 | XENTIA    | TO1   |
+| 1006 | LED SCREEN 40      |   70 | 38000 | SANTORA   | TO2   |
+| 1004 | CAR GPS SYSTEM     |   50 |  2150 | GEOKNOW   | TO1   |
+| 1003 | DIGITAL CAMERA 12X |  160 |  8000 | DIGILICK  | TO2   |
+| 1005 | PEN DRIVE 32 GB    |  600 |  1200 | STOREHOME | TO3   |
++------+--------------------+------+-------+-----------+-------+
+5 rows in set (0.00 sec)

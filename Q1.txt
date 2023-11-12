@@ -1,0 +1,77 @@
+
+a) create table PERSONS(p_ID int,LASTNAME char(50),FIRSTNAME char(50),ADDRESS char(50),CITY char(50));
+
+ desc PERSONS;
++-----------+----------+------+-----+---------+-------+
+| Field     | Type     | Null | Key | Default | Extra |
++-----------+----------+------+-----+---------+-------+
+| p_ID      | int      | YES  |     | NULL    |       |
+| LASTNAME  | char(50) | YES  |     | NULL    |       |
+| FIRSTNAME | char(50) | YES  |     | NULL    |       |
+| ADDRESS   | char(50) | YES  |     | NULL    |       |
+| CITY      | char(50) | YES  |     | NULL    |       |
++-----------+----------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+insert into PERSONS values(1,'HANSEN','OLA','TIMOTEIVN 10','SANDNES');
+insert into PERSONS values(2,'SVENDSON','TOVE','BORGVN23','SANDNES');
+insert into PERSONS values(3,'PETERSEN','KARI','STORGT20','STAVANGER');
+
+
+b)select LASTNAME,FIRSTNAME from PERSONS;
++----------+-----------+
+| LASTNAME | FIRSTNAME |
++----------+-----------+
+| HANSEN   | OLA       |
+| SVENDSON | TOVE      |
+| PETERSEN | KARI      |
++----------+-----------+
+3 rows in set (0.00 sec)
+
+c) select *from PERSONS ;
++------+----------+-----------+--------------+-----------+
+| p_ID | LASTNAME | FIRSTNAME | ADDRESS      | CITY      |
++------+----------+-----------+--------------+-----------+
+|    1 | HANSEN   | OLA       | TIMOTEIVN 10 | SANDNES   |
+|    2 | SVENDSON | TOVE      | BORGVN23     | SANDNES   |
+|    3 | PETERSEN | KARI      | STORGT20     | STAVANGER |
++------+----------+-----------+--------------+-----------+
+3 rows in set (0.00 sec)
+
+d) select *from PERSONS where CITY='SANDNES';
++------+----------+-----------+--------------+---------+
+| p_ID | LASTNAME | FIRSTNAME | ADDRESS      | CITY    |
++------+----------+-----------+--------------+---------+
+|    1 | HANSEN   | OLA       | TIMOTEIVN 10 | SANDNES |
+|    2 | SVENDSON | TOVE      | BORGVN23     | SANDNES |
++------+----------+-----------+--------------+---------+
+2 rows in set (0.00 sec)
+
+e) select *from PERSONS where FIRSTNAME='TOVE'AND LASTNAME='SVENDSON';
++------+----------+-----------+----------+---------+
+| p_ID | LASTNAME | FIRSTNAME | ADDRESS  | CITY    |
++------+----------+-----------+----------+---------+
+|    2 | SVENDSON | TOVE      | BORGVN23 | SANDNES |
++------+----------+-----------+----------+---------+
+1 row in set (0.00 sec)
+
+f) select *from PERSONS where FIRSTNAME='TOVE' OR FIRSTNAME='OLA';
++------+----------+-----------+--------------+---------+
+| p_ID | LASTNAME | FIRSTNAME | ADDRESS      | CITY    |
++------+----------+-----------+--------------+---------+
+|    1 | HANSEN   | OLA       | TIMOTEIVN 10 | SANDNES |
+|    2 | SVENDSON | TOVE      | BORGVN23     | SANDNES |
++------+----------+-----------+--------------+---------+
+2 rows in set (0.00 sec)
+
+or use this format==>>
+ 
+select *from PERSONS where FIRSTNAME='TOVE' OR 'OLA';
++------+----------+-----------+----------+---------+
+| p_ID | LASTNAME | FIRSTNAME | ADDRESS  | CITY    |
++------+----------+-----------+----------+---------+
+|    2 | SVENDSON | TOVE      | BORGVN23 | SANDNES |
++------+----------+-----------+----------+---------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql>

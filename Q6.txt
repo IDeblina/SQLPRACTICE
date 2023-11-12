@@ -1,0 +1,178 @@
+mysql> use dipanjan
+Database changed
+
+mysql> create table CUSTOMER(CID int,CNAME char(50),GENDER char(50),SID int,AREA char(50));
+Query OK, 0 rows affected (0.02 sec)
+
+insert into CUSTOMER values(1001,'R SHARMA','FEMALE',101,'NORTH');
+insert into CUSTOMER values(1002,'M R TIWARI ','MALE',102,'SOUTH');
+insert into CUSTOMER values(1003,'M K KHAN ','MALE',103,'EAST');
+insert into CUSTOMER values(1004,'A K SINGH','MALE',102,'EAST');
+insert into CUSTOMER values(1005,'S SEN','FEMALE',101,'WEST');
+insert into CUSTOMER values(1006,'R DUBEY','MALE',14,'NORTH');
+ insert into CUSTOMER values(1007,'M AGARWAL','FEMALE',104,'NORTH');
+ insert into CUSTOMER values(1008,'S DAS','FEMALE',103,'SOUTH');
+ insert into CUSTOMER values(1009,'R K PATIL','MALE',102,'NORTH');
+insert into CUSTOMER values(1010,'N KRISHNA MURTY','MALE',102,'SOUTH');
+
+
+mysql> select *from CUSTOMER;
++------+-----------------+--------+------+-------+
+| CID  | CNAME           | GENDER | SID  | AREA  |
++------+-----------------+--------+------+-------+
+| 1001 | R SHARMA        | FEMALE |  101 | NORTH |
+| 1002 | M R TIWARI      | MALE   |  102 | SOUTH |
+| 1003 | M K KHAN        | MALE   |  103 | EAST  |
+| 1004 | A K SINGH       | MALE   |  102 | EAST  |
+| 1005 | S SEN           | FEMALE |  101 | WEST  |
+| 1006 | R DUBEY         | MALE   |   14 | NORTH |
+| 1007 | M AGARWAL       | FEMALE |  104 | NORTH |
+| 1008 | S DAS           | FEMALE |  103 | SOUTH |
+| 1009 | R K PATIL       | MALE   |  102 | NORTH |
+| 1010 | N KRISHNA MURTY | MALE   |  102 | SOUTH |
++------+-----------------+--------+------+-------+
+10 rows in set (0.00 sec)
+
+
+
+ create table ONLINESHOP(SID int,SHOP char(50));
+
+
+insert into ONLINESHOP values(101,'MY BUY');
+ insert into ONLINESHOP values(102,'ECO BUY');
+insert into ONLINESHOP values(103,'JUST SHOPPING');
+insert into ONLINESHOP values(104,'SHOPPING EASY');
+
+
+mysql> select *from ONLINESHOP;
++------+---------------+
+| SID  | SHOP          |
++------+---------------+
+|  101 | MY BUY        |
+|  102 | ECO BUY       |
+|  103 | JUST SHOPPING |
+|  104 | SHOPPING EASY |
++------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from customer order by cname,sid  ;
++------+-----------------+--------+------+-------+
+| CID  | CNAME           | GENDER | SID  | AREA  |
++------+-----------------+--------+------+-------+
+| 1004 | A K SINGH       | MALE   |  102 | EAST  |
+| 1007 | M AGARWAL       | FEMALE |  104 | NORTH |
+| 1003 | M K KHAN        | MALE   |  103 | EAST  |
+| 1002 | M R TIWARI      | MALE   |  102 | SOUTH |
+| 1010 | N KRISHNA MURTY | MALE   |  102 | SOUTH |
+| 1006 | R DUBEY         | MALE   |  104 | NORTH |
+| 1009 | R K PATIL       | MALE   |  102 | NORTH |
+| 1001 | R SHARMA        | FEMALE |  101 | NORTH |
+| 1008 | S DAS           | FEMALE |  103 | SOUTH |
+| 1005 | S SEN           | FEMALE |  101 | WEST  |
++------+-----------------+--------+------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select cname,area from customer where gender='female';
++-----------+-------+
+| cname     | area  |
++-----------+-------+
+| R SHARMA  | NORTH |
+| S SEN     | WEST  |
+| M AGARWAL | NORTH |
+| S DAS     | SOUTH |
++-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer order by sid, cname;
++------+-----------------+--------+------+-------+
+| CID  | CNAME           | GENDER | SID  | AREA  |
++------+-----------------+--------+------+-------+
+| 1001 | R SHARMA        | FEMALE |  101 | NORTH |
+| 1005 | S SEN           | FEMALE |  101 | WEST  |
+| 1004 | A K SINGH       | MALE   |  102 | EAST  |
+| 1002 | M R TIWARI      | MALE   |  102 | SOUTH |
+| 1010 | N KRISHNA MURTY | MALE   |  102 | SOUTH |
+| 1009 | R K PATIL       | MALE   |  102 | NORTH |
+| 1003 | M K KHAN        | MALE   |  103 | EAST  |
+| 1008 | S DAS           | FEMALE |  103 | SOUTH |
+| 1007 | M AGARWAL       | FEMALE |  104 | NORTH |
+| 1006 | R DUBEY         | MALE   |  104 | NORTH |
++------+-----------------+--------+------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select area, count(*) from customer  group by area;
++-------+----------+
+| area  | count(*) |
++-------+----------+
+| NORTH |        4 |
+| SOUTH |        3 |
+| EAST  |        2 |
+| WEST  |        1 |
++-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select customer.cname, onlineshop.shop from customer, onlineshop where customer.sid=onlineshop.sid;
++-----------------+---------------+
+| cname           | shop          |
++-----------------+---------------+
+| R SHARMA        | MY BUY        |
+| M R TIWARI      | ECO BUY       |
+| M K KHAN        | JUST SHOPPING |
+| A K SINGH       | ECO BUY       |
+| S SEN           | MY BUY        |
+| R DUBEY         | SHOPPING EASY |
+| M AGARWAL       | SHOPPING EASY |
+| S DAS           | JUST SHOPPING |
+| R K PATIL       | ECO BUY       |
+| N KRISHNA MURTY | ECO BUY       |
++-----------------+---------------+
+10 rows in set (0.04 sec)
+
+mysql> select count(*),gender  from customer group by gender;
++----------+--------+
+| count(*) | gender |
++----------+--------+
+|        4 | FEMALE |
+|        6 | MALE   |
++----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select count(*) from onlineshop;
++----------+
+| count(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT CNAME FROM CUSTOMER WHERE CNAME LIKE 'L%';
+Empty set (0.00 sec)
+
+mysql> SELECT CNAME FROM CUSTOMER WHERE CNAME LIKE 'R%';
++-----------+
+| CNAME     |
++-----------+
+| R SHARMA  |
+| R DUBEY   |
+| R K PATIL |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT CNAME FROM CUSTOMER WHERE CNAME LIKE 'A%';
++-----------+
+| CNAME     |
++-----------+
+| A K SINGH |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DISTINCT AREA FROM CUSTOMER;
++-------+
+| AREA  |
++-------+
+| NORTH |
+| SOUTH |
+| EAST  |
+| WEST  |
++-------+
+4 rows in set (0.01 sec)

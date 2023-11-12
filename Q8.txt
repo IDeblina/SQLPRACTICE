@@ -1,0 +1,126 @@
+
+mysql> SELECT * FROM STATION;
++----+---------+-------+-------+--------+
+| ID | CITY    | STATE | LAT_N | LONG_W |
++----+---------+-------+-------+--------+
+| 13 | Phoenix | AZ    |    33 |    112 |
+| 44 | Denver  | CO    |    40 |    105 |
+| 66 | Caribou | ME    |    47 |     68 |
++----+---------+-------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STATION WHERE LAT_N > 39.7;
++----+---------+-------+-------+--------+
+| ID | CITY    | STATE | LAT_N | LONG_W |
++----+---------+-------+-------+--------+
+| 44 | Denver  | CO    |    40 |    105 |
+| 66 | Caribou | ME    |    47 |     68 |
++----+---------+-------+-------+--------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT ID, CITY, STATE FROM STATION;
++----+---------+-------+
+| ID | CITY    | STATE |
++----+---------+-------+
+| 13 | Phoenix | AZ    |
+| 44 | Denver  | CO    |
+| 66 | Caribou | ME    |
++----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STATS;
++----+-------+--------+--------+
+| ID | MONTH | TEMP_F | RAIN_I |
++----+-------+--------+--------+
+| 13 |     1 |   57.4 |   0.31 |
+| 13 |     7 |   91.7 |   5.15 |
+| 44 |     1 |   27.3 |   0.18 |
+| 44 |     7 |   74.8 |   2.11 |
+| 66 |     1 |    6.7 |    2.1 |
+| 66 |     7 |   65.8 |   4.52 |
++----+-------+--------+--------+
+6 rows in set (0.01 sec)
+
+mysql> SELECT * FROM STATION, STATS WHERE STATION.ID = STATS.ID;
++----+---------+-------+-------+--------+----+-------+--------+--------+
+| ID | CITY    | STATE | LAT_N | LONG_W | ID | MONTH | TEMP_F | RAIN_I |
++----+---------+-------+-------+--------+----+-------+--------+--------+
+| 13 | Phoenix | AZ    |    33 |    112 | 13 |     1 |   57.4 |   0.31 |
+| 13 | Phoenix | AZ    |    33 |    112 | 13 |     7 |   91.7 |   5.15 |
+| 44 | Denver  | CO    |    40 |    105 | 44 |     1 |   27.3 |   0.18 |
+| 44 | Denver  | CO    |    40 |    105 | 44 |     7 |   74.8 |   2.11 |
+| 66 | Caribou | ME    |    47 |     68 | 66 |     1 |    6.7 |    2.1 |
+| 66 | Caribou | ME    |    47 |     68 | 66 |     7 |   65.8 |   4.52 |
++----+---------+-------+-------+--------+----+-------+--------+--------+
+6 rows in set (0.01 sec)
+
+mysql> SELECT MONTH, ID, RAIN_I, TEMP_F FROM STATS ORDER BY MONTH, RAIN_I DESC;
++-------+----+--------+--------+
+| MONTH | ID | RAIN_I | TEMP_F |
++-------+----+--------+--------+
+|     1 | 66 |    2.1 |    6.7 |
+|     1 | 13 |   0.31 |   57.4 |
+|     1 | 44 |   0.18 |   27.3 |
+|     7 | 13 |   5.15 |   91.7 |
+|     7 | 66 |   4.52 |   65.8 |
+|     7 | 44 |   2.11 |   74.8 |
++-------+----+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT LAT_N, CITY, TEMP_F FROM STATS, STATION WHERE MONTH = 7 AND STATS.ID = STATION.ID ORDER BY TEMP_F;
++-------+---------+--------+
+| LAT_N | CITY    | TEMP_F |
++-------+---------+--------+
+|    47 | Caribou |   65.8 |
+|    40 | Denver  |   74.8 |
+|    33 | Phoenix |   91.7 |
++-------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT MAX(TEMP_F), MIN(TEMP_F), AVG(RAIN_I), ID FROM STATS GROUP BY ID;
++-------------+-------------+--------------------+----+
+| MAX(TEMP_F) | MIN(TEMP_F) | AVG(RAIN_I)        | ID |
++-------------+-------------+--------------------+----+
+|        91.7 |        57.4 |               2.73 | 13 |
+|        74.8 |        27.3 |              1.145 | 44 |
+|        65.8 |         6.7 | 3.3099999999999996 | 66 |
++-------------+-------------+--------------------+----+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM STATION WHERE 50 < (SELECT AVG(TEMP_F) FROM STATS WHERE STATION.ID = STATS.ID);
++----+---------+-------+-------+--------+
+| ID | CITY    | STATE | LAT_N | LONG_W |
++----+---------+-------+-------+--------+
+| 13 | Phoenix | AZ    |    33 |    112 |
+| 44 | Denver  | CO    |    40 |    105 |
++----+---------+-------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE VIEW METRIC_STATS (ID, MONTH, TEMP_C, RAIN_C) AS SELECT ID,MONTH,(TEMP_F - 32) * 5/9, RAIN_I * 0.3937 FROM STATS;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SELECT * FROM METRIC_STATS;
++----+-------+---------------------+--------------------+
+| ID | MONTH | TEMP_C              | RAIN_C             |
++----+-------+---------------------+--------------------+
+| 13 |     1 |   14.11111111111111 |           0.122047 |
+| 13 |     7 |  33.166666666666664 |           2.027555 |
+| 44 |     1 | -2.6111111111111107 |           0.070866 |
+| 44 |     7 |   23.77777777777778 |           0.830707 |
+| 66 |     1 | -14.055555555555555 |            0.82677 |
+| 66 |     7 |   18.77777777777778 | 1.7795239999999999 |
++----+-------+---------------------+--------------------+
+6 rows in set (0.01 sec)
+
+mysql>  SELECT * FROM METRIC_STATS WHERE TEMP_C < 0 AND MONTH = 1 ORDER BY RAIN_C;
++----+-------+---------------------+----------+
+| ID | MONTH | TEMP_C              | RAIN_C   |
++----+-------+---------------------+----------+
+| 44 |     1 | -2.6111111111111107 | 0.070866 |
+| 66 |     1 | -14.055555555555555 |  0.82677 |
++----+-------+---------------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> UPDATE STATS SET RAIN_I = RAIN_I + 0.01;
+Query OK, 6 rows affected (0.01 sec)
+Rows matched: 6  Changed: 6  Warnings: 0

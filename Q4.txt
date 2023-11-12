@@ -1,0 +1,160 @@
+mysql> use dipanjan
+Database changed
+mysql> show tables;]\
++--------------------+
+| Tables_in_dipanjan |
++--------------------+
+| accessories        |
+| employee           |
+| persons            |
+| shoppe             |
+| t1                 |
++--------------------+
+5 rows in set (0.01 sec)
+
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ']' at line 1
+mysql> crweate table items(CODE int,INAME char(50),QTY int,PRICE int,COMPANY char(50),TCODE char(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'crweate table items(CODE int,INAME char(50),QTY int,PRICE int,COMPANY char(50),T' at line 1
+mysql> create table items(CODE int,INAME char(50),QTY int,PRICE int,COMPANY char(50),TCODE char(50));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into items values(1001,'DIGITAL PAD 121',120,11000,'XENTIA','TO1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into items values(1006,'LED SCREEN 40',70,38000,'SANTORA','TO2');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into items values(1004,'CAR GPS SYSTEM',50,2150,'GEOKNOW','TO1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into items values(1003,'DIGITAL CAMERA 12X',160,8000,'DIGILICK','TO2');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into items values(1005,'PEN DRIVE 32 GB',600,1200,'STOREHOME','TO3');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_dipanjan |
++--------------------+
+| accessories        |
+| employee           |
+| items              |
+| persons            |
+| shoppe             |
+| t1                 |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> select *from items;
++------+--------------------+------+-------+-----------+-------+
+| CODE | INAME              | QTY  | PRICE | COMPANY   | TCODE |
++------+--------------------+------+-------+-----------+-------+
+| 1001 | DIGITAL PAD 121    |  120 | 11000 | XENTIA    | TO1   |
+| 1006 | LED SCREEN 40      |   70 | 38000 | SANTORA   | TO2   |
+| 1004 | CAR GPS SYSTEM     |   50 |  2150 | GEOKNOW   | TO1   |
+| 1003 | DIGITAL CAMERA 12X |  160 |  8000 | DIGILICK  | TO2   |
+| 1005 | PEN DRIVE 32 GB    |  600 |  1200 | STOREHOME | TO3   |
++------+--------------------+------+-------+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>  SELECT *FROM ITEMS ORDER BY INAME;
++------+--------------------+------+-------+-----------+-------+
+| CODE | INAME              | QTY  | PRICE | COMPANY   | TCODE |
++------+--------------------+------+-------+-----------+-------+
+| 1004 | CAR GPS SYSTEM     |   50 |  2150 | GEOKNOW   | TO1   |
+| 1003 | DIGITAL CAMERA 12X |  160 |  8000 | DIGILICK  | TO2   |
+| 1001 | DIGITAL PAD 121    |  120 | 11000 | XENTIA    | TO1   |
+| 1006 | LED SCREEN 40      |   70 | 38000 | SANTORA   | TO2   |
+| 1005 | PEN DRIVE 32 GB    |  600 |  1200 | STOREHOME | TO3   |
++------+--------------------+------+-------+-----------+-------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT INAME,PRICE FROM ITEMS WHERE PRICE BETWEEN 10000 AND 22000;
++-----------------+-------+
+| INAME           | PRICE |
++-----------------+-------+
+| DIGITAL PAD 121 | 11000 |
++-----------------+-------+
+1 row in set (0.01 sec)
+
+mysql> SELECT TCODE, COUNT(*) FROM ITEMS GROUP BY TCODE;
++-------+----------+
+| TCODE | COUNT(*) |
++-------+----------+
+| TO1   |        2 |
+| TO2   |        2 |
+| TO3   |        1 |
++-------+----------+
+3 rows in set (0.00 sec)
+
+mysql>  first name "TOVE" OR "OLA"
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'first name "TOVE" OR "OLA"' at line 1
+mysql> SELECT PRICE,INAME,QTY FROM ITEMS WHERE QTY>150;
++-------+--------------------+------+
+| PRICE | INAME              | QTY  |
++-------+--------------------+------+
+|  8000 | DIGITAL CAMERA 12X |  160 |
+|  1200 | PEN DRIVE 32 GB    |  600 |
++-------+--------------------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT TNAME FROM TRADERS WHERE CITY='MUMBAI' OR CITY='DELHI';
++-------------------+
+| TNAME             |
++-------------------+
+| ELSECTRONIC SALES |
+| BUSY STORE CORP   |
++-------------------+
+2 rows in set (0.03 sec)
+
+mysql> SELECT COMPANY,INAME FROM ITEMS ORDER BY COMPANY DESC;
++-----------+--------------------+
+| COMPANY   | INAME              |
++-----------+--------------------+
+| XENTIA    | DIGITAL PAD 121    |
+| STOREHOME | PEN DRIVE 32 GB    |
+| SANTORA   | LED SCREEN 40      |
+| GEOKNOW   | CAR GPS SYSTEM     |
+| DIGILICK  | DIGITAL CAMERA 12X |
++-----------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT MAX(PRICE), MIN(PRICE) FROM ITEMS;
++------------+------------+
+| MAX(PRICE) | MIN(PRICE) |
++------------+------------+
+|      38000 |       1200 |
++------------+------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT PRICE * QTY AMOUNT FROM ITEMS WHERE CODE=1004;
++--------+
+| AMOUNT |
++--------+
+| 107500 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DISTINCT TCODE FROM ITEMS;
++-------+
+| TCODE |
++-------+
+| TO1   |
+| TO2   |
+| TO3   |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT INAME,TNAME FROM ITEMS I, TRADERS T WHERE I.TCODE=T.TCODE AND QTY<100;
++----------------+-------------------+
+| INAME          | TNAME             |
++----------------+-------------------+
+| CAR GPS SYSTEM | ELSECTRONIC SALES |
+| LED SCREEN 40  | DISP HOUSE INC    |
++----------------+-------------------+
+2 rows in set (0.00 sec)
+
+mysql>

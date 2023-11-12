@@ -1,0 +1,390 @@
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.21 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use dipanjan
+Database changed
+mysql> SELECT ACOS(0.5);
++--------------------+
+| ACOS(0.5)          |
++--------------------+
+| 1.0471975511965979 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ATAN(.25);
++---------------------+
+| ATAN(.25)           |
++---------------------+
+| 0.24497866312686414 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ATAN2(0.4, 2);
++---------------------+
+| ATAN2(0.4, 2)       |
++---------------------+
+| 0.19739555984988078 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DEGREES(2.5);
++-------------------+
+| DEGREES(2.5)      |
++-------------------+
+| 143.2394487827058 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT EXP(3);
++--------------------+
+| EXP(3)             |
++--------------------+
+| 20.085536923187668 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT GREATEST(30, 120,
+    -> 20, 81, 205);
++--------------------------------+
+| GREATEST(30, 120,
+20, 81, 205) |
++--------------------------------+
+|                            205 |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LN(10);
++-------------------+
+| LN(10)            |
++-------------------+
+| 2.302585092994046 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LOG10(2);
++--------------------+
+| LOG10(2)           |
++--------------------+
+| 0.3010299956639812 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LOG11(2);
+ERROR 1305 (42000): FUNCTION dipanjan.LOG11 does not exist
+mysql> SELECT LOG10(2);
++--------------------+
+| LOG10(2)           |
++--------------------+
+| 0.3010299956639812 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT PI();
++----------+
+| PI()     |
++----------+
+| 3.141593 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> -SELECT POWER(7, 3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-SELECT POWER(7, 3)' at line 1
+mysql> -SELECT POWER(7,3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-SELECT POWER(7,3)' at line 1
+mysql> SELECT POWER(7,3);
++------------+
+| POWER(7,3) |
++------------+
+|        343 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND();
++----------------------+
+| RAND()               |
++----------------------+
+| 0.008812148132186521 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND();
++--------------------+
+| RAND()             |
++--------------------+
+| 0.9036713949438849 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND();
++---------------------+
+| RAND()              |
++---------------------+
+| 0.49192056105651016 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND();
++--------------------+
+| RAND()             |
++--------------------+
+| 0.7485886511845409 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND()*10;
++-------------------+
+| RAND()*10         |
++-------------------+
+| 2.671816034868188 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND()*10;
++--------------------+
+| RAND()*10          |
++--------------------+
+| 0.9014209461411657 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND()*10;
++-------------------+
+| RAND()*10         |
++-------------------+
+| 6.491656933437714 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND()*10;
++------------------+
+| RAND()*10        |
++------------------+
+| 9.75402213610152 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND()*100;
++-------------------+
+| RAND()*100        |
++-------------------+
+| 92.95140187530909 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND()*100;
++-------------------+
+| RAND()*100        |
++-------------------+
+| 72.13634836686434 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND()*100;
++-------------------+
+| RAND()*100        |
++-------------------+
+| 81.82753928175899 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CEIL(35.75);
++-------------+
+| CEIL(35.75) |
++-------------+
+|          36 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CEIL(35.75);
++-------------+
+| CEIL(35.75) |
++-------------+
+|          36 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CEILING(25.75);
++----------------+
+| CEILING(25.75) |
++----------------+
+|             26 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT COS(1);
++--------------------+
+| COS(1)             |
++--------------------+
+| 0.5403023058681398 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COT(6);
++--------------------+
+| COT(6)             |
++--------------------+
+| -3.436353004180128 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT 200 DIV 2;
++-----------+
+| 200 DIV 2 |
++-----------+
+|       100 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FLOOR(45.95);
++--------------+
+| FLOOR(45.95) |
++--------------+
+|           45 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LEAST(8, 102, 74, 81,
+    -> 275);
++----------------------------+
+| LEAST(8, 102, 74, 81,
+275) |
++----------------------------+
+|                          8 |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LOG(4, 10);
++--------------------+
+| LOG(4, 10)         |
++--------------------+
+| 1.6609640474436813 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MOD(28, 3);
++------------+
+| MOD(28, 3) |
++------------+
+|          1 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT POW(5, 3);
++-----------+
+| POW(5, 3) |
++-----------+
+|       125 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> ^C
+mysql> SELECT RADIANS(180);
++-------------------+
+| RADIANS(180)      |
++-------------------+
+| 3.141592653589793 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(135.375, 2);
++-------------------+
+| ROUND(135.375, 2) |
++-------------------+
+|            135.38 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(135.375, 3);
++-------------------+
+| ROUND(135.375, 3) |
++-------------------+
+|           135.375 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SIGN(-78);
++-----------+
+| SIGN(-78) |
++-----------+
+|        -1 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SIGN(78);
++----------+
+| SIGN(78) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SIGN(+78);
++-----------+
+| SIGN(+78) |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TAN(90);
++--------------------+
+| TAN(90)            |
++--------------------+
+| -1.995200412208242 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SQRT(32);
++-------------------+
+| SQRT(32)          |
++-------------------+
+| 5.656854249492381 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SQRT(64);
++----------+
+| SQRT(64) |
++----------+
+|        8 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT
+    -> TRUNCATE(7235.37589, 2);
++-------------------------+
+| TRUNCATE(7235.37589, 2) |
++-------------------------+
+|                 7235.37 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> TRUNCATE(7235.37589, 3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(7235.37589, 3)' at line 1
+mysql> select TRUNCATE(7235.37589,3);
++------------------------+
+| TRUNCATE(7235.37589,3) |
++------------------------+
+|               7235.375 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ABS(-243.5);
++-------------+
+| ABS(-243.5) |
++-------------+
+|       243.5 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>

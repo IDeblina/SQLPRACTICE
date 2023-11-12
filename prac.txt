@@ -1,0 +1,17 @@
+CREATE TABLE `dipanjan`.`manufactures` (
+  `code` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`code`));
+
+CREATE TABLE `db`.` products` (
+  `code` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Price` VARCHAR(45) NOT NULL,
+  `Manufacturer` INT NOT NULL,
+  PRIMARY KEY (`code`));
+
+CREATE TABLE `db`.`departments` (
+  `Code` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  `Budget` INT NOT NULL,
+  PRIMARY KEY (`Code`));

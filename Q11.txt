@@ -1,0 +1,67 @@
+mysql> create table employee1(ECODE int,NAME char(50),DESIGN char(50),SGRADE char(50),DOJ char(50),DOB char(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into employee1 values(101,'ABDUL AHMED','EXECUTIVE','S03','23-MAR-2003','13-JAN-1980');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee1 values(102,'RAVI CHANDER','HEAD-IT','S02','12-FEB-2010','22-JUL-1987');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee1 values(103,'JOHN KEN','RECEPTIONIST','S03','24-JUN-2009','24-FEB-1983');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee1 values(105,'NAZAR AMEEN','GM','S02','11-AUG-2006','03-MAR-1984');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee1 values(108,'PRIYAM SEN','CEO','S01','29-DEC-2004','19-JAN-1982');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT *FROM EMPLOYEE1;
++-------+--------------+--------------+--------+-------------+-------------+
+| ECODE | NAME         | DESIGN       | SGRADE | DOJ         | DOB         |
++-------+--------------+--------------+--------+-------------+-------------+
+|   101 | ABDUL AHMED  | EXECUTIVE    | S03    | 23-MAR-2003 | 13-JAN-1980 |
+|   102 | RAVI CHANDER | HEAD-IT      | S02    | 12-FEB-2010 | 22-JUL-1987 |
+|   103 | JOHN KEN     | RECEPTIONIST | S03    | 24-JUN-2009 | 24-FEB-1983 |
+|   105 | NAZAR AMEEN  | GM           | S02    | 11-AUG-2006 | 03-MAR-1984 |
+|   108 | PRIYAM SEN   | CEO          | S01    | 29-DEC-2004 | 19-JAN-1982 |
++-------+--------------+--------------+--------+-------------+-------------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> create table SALGRADE(SGRADE char(50),salary int,HRA int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into SALGRADE values('S01',56000,18000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into SALGRADE values('S02',32000,12000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into SALGRADE values('S03',24000,8000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT *FROM SALGRADE;
++--------+--------+-------+
+| SGRADE | salary | HRA   |
++--------+--------+-------+
+| S01    |  56000 | 18000 |
+| S02    |  32000 | 12000 |
+| S03    |  24000 |  8000 |
++--------+--------+-------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
+i) SELECT *FROM EMPLOYEE ORDER BY DOJ DESC;
+
+ii) SELECT NAME, DESIGN FROM EMPLOYEE1 WHERE (SGRADE='S02' OR SGRADE='S03');
+
+iii) SELECT *FROM EMPLOYEE WHERE DOJ BETWEEN ’09-FEB-2006’ AND ’08-AUG-2009’;
+
+iv) INSERT INTO EMPLOYEE VALUES (109, ‘HARISH ROY’, ‘HEAD-IT’, ‘S02’, ‘09-SEP-2007’, ’21-APR-1983’);
